@@ -1,33 +1,26 @@
 #import libraries
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from datetime import datetime, timedelta
-import pytz
+from flask import Flask, jsonify
+from datetime import datetime 
+from flask_cors import CORS
 
+#initialize the flask instance
+app = Flask(__name__)
+CORS(app)
 
-app = FastAPI()
+email = "olatunbosunlateef6@gmail.com"
+github_url = "https://github.com/Young-proflat/Hngtask0/"
 
-# Enable CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  
-    allow_credentials=True,
-    allow_methods=["GET"],  
-    allow_headers=["*"], 
-)
+@app.route('/', methods=['GET'])
+@app.route('/api', methods=['GET'])
 
-# Correct timezone usage
-timezone = pytz.timezone("Africa/Lagos")
-
-@app.get("/")
-def mygetapi():
-    email = "olatunbosunlateef6@gmail.com"
-    current_datetime = datetime.now(timezone).isoformat() + "Z"
-    github_url = "https://github.com/Young-proflat/Hngtask0/"
-
+def res ():
     response = {
         "email": email,
-        "current_datetime": current_datetime,
+        "current_date": datetime.now().isoformat(),
         "github_url": github_url
-    }
-    return response
+            }
+    return jsonify(response)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
