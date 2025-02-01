@@ -12,15 +12,11 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  
     allow_credentials=True,
-    allow_methods=["GET"],  # Allow all HTTP methods (GET, POST, etc.)
+    allow_methods=["GET"],  
     allow_headers=["*"], 
 )
 
-timezone = pytz.timezone("Africa/Lagos")
-
-@app.get("/")
-
-
+# Correct timezone usage
 timezone = pytz.timezone("Africa/Lagos")
 
 @app.get("/")
@@ -28,11 +24,10 @@ def mygetapi():
     email = "olatunbosunlateef6@gmail.com"
     current_datetime = datetime.now(timezone).isoformat() + "Z"
     github_url = "https://github.com/Young-proflat/Hngtask0/"
-    
+
     response = {
         "email": email,
         "current_datetime": current_datetime,
         "github_url": github_url
     }
-    
     return response
