@@ -17,3 +17,7 @@ Run the following command to generate a requirements.txt file containing all dep
 # **pip freeze > requirements.txt** 
 which render runs a gunicorn on your requirements.txt file 
 # gunicorn: app:app
+
+
+To Learn more check out this link below 
+https://hng.tech/hire/python-developers
